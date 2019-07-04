@@ -17,10 +17,10 @@ static void offset_to_coords(ptrdiff_t offset,
   *y = offset / width;
 }
 
-static size_t map_field(uint8_t* field,
-                        size_t* map,
-                        ptrdiff_t width,
-                        ptrdiff_t height)
+static ptrdiff_t map_field(uint8_t* field,
+                           ptrdiff_t* map,
+                           ptrdiff_t width,
+                           ptrdiff_t height)
 {
   ptrdiff_t size = width * height;
   ptrdiff_t offset = 0;
@@ -28,7 +28,7 @@ static size_t map_field(uint8_t* field,
   ptrdiff_t y;
   ptrdiff_t hoffset;
   ptrdiff_t voffset;
-  size_t count = 0;
+  ptrdiff_t count = 0;
 
   while (offset < size)
   {
@@ -50,14 +50,14 @@ static size_t map_field(uint8_t* field,
   return count;
 }
 
-static size_t count_islands(uint8_t* field,
-                            ptrdiff_t width,
-                            ptrdiff_t height)
+static ptrdiff_t count_islands(uint8_t* field,
+                               ptrdiff_t width,
+                               ptrdiff_t height)
 {
-  size_t count;
-  size_t* map;
+  ptrdiff_t count;
+  ptrdiff_t* map;
 
-  map = (size_t*)malloc(sizeof(size_t) * width * height);
+  map = (ptrdiff_t*)malloc(sizeof(ptrdiff_t) * width * height);
   count = map_field(field, map, width, height);
   free(map);
   return count;
